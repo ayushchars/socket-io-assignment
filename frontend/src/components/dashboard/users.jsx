@@ -64,7 +64,6 @@ const handleLogout = () => {
             <img src="/avatar.jpg" alt="avatar" className="w-8 h-8 rounded-full" />
             <div>
               <p className="text-sm font-semibold">{user.name}</p>
-              <p className="text-xs text-gray-500">Hi how are you!</p>
             </div>
           </div>
           <span className={`text-xs ${user.isOnline  ? 'text-green-500' : 'text-gray-400'}`}>
