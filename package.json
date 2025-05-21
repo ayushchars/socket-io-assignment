@@ -1,0 +1,14 @@
+{
+    "name": "socket-io-assignment",
+    "version": "1.0.0",
+    "description": "A monorepo for a real-time Socket.IO assignment with a Node.js backend and React frontend.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+    },
+    "author": "Ayush Chaurasia",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
