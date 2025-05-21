@@ -29,14 +29,16 @@ const initSocket = (server) => {
       io.emit("userStatusChanged", { userId, isOnline: true });
     });
 
-    socket.on("disconnect", async () => {
-      const userId = Object.keys(userSockets).find(id => userSockets[id] === socket.id);
-      if (userId) {
-        delete userSockets[userId];
-        await updateUserStatus(userId, false);
-        io.emit("userStatusChanged", { userId, isOnline: false });
-      }
-    });
+    
+    socket.on("unregister", async (userId) => {
+    if (userSockets[userId]) {
+      delete userSockets[userId];
+      await updateUserStatus(userId, false);
+      io.emit("userStatusChanged", { userId, isOnline: false });
+      console.log(`User ${userId} manually logged out`);
+    }
+  });
+
 
     socket.on("sendMessage", async ({ chatId, senderId, receiverId, text }) => {
       try {

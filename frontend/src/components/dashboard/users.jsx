@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { authAxios } from '../../config/config';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { io } from 'socket.io-client';
+const socket = io(import.meta.env.VITE_REACT_APP_BASEURL); 
 
 function Users({ onSelectUser, selectedUser }) {
   const [users, setUsers] = useState([]);
@@ -29,9 +31,16 @@ function Users({ onSelectUser, selectedUser }) {
 
   
 const handleLogout = () => {
-  navigate('/');
+  const storedUser = JSON.parse(localStorage.getItem('userDetail'));
+  const userId = storedUser?.id;
+
+  if (userId) {
+    socket.emit('unregister', userId);
+  }
+
   localStorage.removeItem('token');
   localStorage.removeItem('userDetail');
+  navigate('/');
 };
 
   return (

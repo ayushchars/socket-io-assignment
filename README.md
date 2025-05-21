@@ -11,6 +11,7 @@ socket-io-assignment/
 ├── frontend/ # React client using Vite
 ├── package.json # Root file to manage both frontend and backend
 
+#Please use NodeJS 20+ Version 
 
 ### 1. Clone the Repository
 
@@ -21,9 +22,12 @@ cd socket-io-assignment
 
 Install Dependencies
 
-# Install root tools (like concurrently)
+# Install root tools 
 npm install
 
+# Install dev tools
+npm install concurrently --save-dev
+ 
 # Install backend dependencies
 npm install --prefix backend
 
